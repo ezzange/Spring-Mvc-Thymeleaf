@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -106,6 +107,38 @@ public class BasicController {
         list.add(new User("userC", 30));
         model.addAttribute("users", list);
     }
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUsers(model);
+        return "basic/condition";
+    }
+    @GetMapping("/comments")
+    public String comments(Model model) {
+        model.addAttribute("data", "Spring!");
+        return "basic/comments";
+    }
+    @GetMapping("/block")
+    public String block(Model model) {
+        addUsers(model);
+        return "basic/block";
+    }
 
+    @GetMapping("/javascript")
+    public String javascript(Model model) {
+        model.addAttribute("user", new User("UserA", 10));
+        return "basic/javascript";
+    }
+    @GetMapping("/fragment")
+    public String template() {
+        return "template/fragment/fragmentMain";
+    }
+    @GetMapping("/layout")
+    public String layout() {
+        return "template/layout/layoutMain";
+    }
+    @GetMapping("/layoutExtend")
+    public String layoutExtends() {
+        return "template/layoutExtend/layoutExtendMain";
+    }
 }
 
